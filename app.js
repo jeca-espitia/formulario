@@ -27,21 +27,16 @@ function publicar(res) {
     });
 }
 
-
-
 app.get('/', (req, res) => {
     publicar(res);
 });
 
 app.post('/register', (req, res) => {
-    //res.render("Hola " + req.body.name);
-
-    var parametros = {
+        var parametros = {
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
     }
-
     Formulario.create(parametros, function (err) {
         if (err) return console.error(err);
         res.redirect('/')
@@ -50,8 +45,6 @@ app.post('/register', (req, res) => {
 
 
 app.get('/register', (req, res) => {
-
-
     var formulario = '<form action="/register" method="post" style="width:100px">' +
         '<label for="nombre"> Nombre </label> <input type="text" id="nombre" name="name">' +
         '<label for="email"> Email </label><input type="email" id="email" name="email">' +
@@ -60,4 +53,5 @@ app.get('/register', (req, res) => {
         '</form>'
     res.send(formulario);
 });
+
 app.listen(3000, () => console.log('Listening on port 3000!'));
