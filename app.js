@@ -4,7 +4,7 @@ var app = express();
 app.use(express.urlencoded());
 
 var schema = mongoose.Schema({
-    name: String,
+    nombre: String,
     email: String,
     password: String,
 });
@@ -20,7 +20,7 @@ function publicar(res) {
         console.log(lista);
         let result = "<table><thead><th>Name</th><th>Email</th></thead>"
         lista.forEach(lista => {
-            result += "<tr><td>" + lista.name + "</td><td>" + lista.email + "</td></tr>";
+            result += "<tr><td>" + lista.nombre + "</td><td>" + lista.email + "</td></tr>";
         })
         result += '</table>';
         res.send('<p><a href="http://localhost:3000/register"> Registrarse </a></p>' + result);
@@ -33,7 +33,7 @@ app.get('/', (req, res) => {
 
 app.post('/register', (req, res) => {
         var parametros = {
-        name: req.body.name,
+        name: req.body.nombre,
         email: req.body.email,
         password: req.body.password,
     }
@@ -46,7 +46,7 @@ app.post('/register', (req, res) => {
 
 app.get('/register', (req, res) => {
     var formulario = '<form action="/register" method="post" style="width:100px">' +
-        '<label for="nombre"> Nombre </label> <input type="text" id="nombre" name="name">' +
+        '<label for="nombre"> Nombre </label> <input type="text" id="nombre" name="nombre">' +
         '<label for="email"> Email </label><input type="email" id="email" name="email">' +
         '<label for="password"> Contraseña </label> <input type="password" id="password" name="password"">' +
         '<button type="submit">Registrar</button>' +
